@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import db from './DatabaseManager';  // Importing the Database class
+
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,14 +11,22 @@ import {
 } from 'react-router-dom';
 import './App.css';
 
-const apartments = [
-  { id: 1, name: 'Sunset Loft', price: '$1200', complex: 'The Modern Nest' },
-  { id: 2, name: 'Urban Oasis', price: '$1500', complex: 'Trout Residences' },
-  { id: 3, name: 'Cityscape Suite', price: '$1800', complex: 'The Elite Complex' },
-  { id: 4, name: 'Riverfront Retreat', price: '$2000', complex: 'Trout Estates' },
-];
+
+interface Apartment {
+  id: number;
+  name: string;
+  price: string;
+  complex: string;
+}
 
 function HomePage() {
+  const [apartments, setApartments] = useState<Apartment[]>([]);
+
+  // Fetch apartments on component mount
+  useEffect(() => {
+    setApartments(db.getInfo('')); // Get all apartments, or you can filter by name here
+  }, []);
+
   return (
     <div className="app-container">
       <header className="app-header">
@@ -42,8 +53,8 @@ function HomePage() {
 }
 
 function ApartmentDetails() {
-  const { id } = useParams();
-  const apartment = apartments.find(ap => ap.id === Number(id));
+  const { id } = useParams<{ id: string }>(); // Correctly typing useParams
+  const apartment = db.getApartmentById(Number(id));
 
   if (!apartment) {
     return (
