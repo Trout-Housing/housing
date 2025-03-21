@@ -1,0 +1,26 @@
+{"apartments": [
+  {
+    "price": "$2000",
+    "complex": "Trout Estates",
+    "name": "Riverfront Retreat",
+    "id": 1
+  },
+  {
+    "price": "$1500",
+    "complex": "Trout Residencessss",
+    "name": "Urban Oasis",
+    "id": 2
+  },
+  {
+    "price": "$1800",
+    "complex": "The Elite Complex",
+    "name": "Cityscape Suite",
+    "id": 3
+  },
+  {
+    "price": "$1200",
+    "complex": "The Modern Nest",
+    "name": "Sunset Loft",
+    "id": 4
+  }
+]}
